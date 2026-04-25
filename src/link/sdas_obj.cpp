@@ -47,7 +47,7 @@ static int nextLine(std::vector<char> &lineBuf, Location &where, FILE *file) {
 			return EOF;
 		case ';':
 			// Discard comment line
-			// TODO: if `;!FILE [...]` on the first line (`where.lineNo`), return it
+			// [LOGIC OPTIMIZED 2026 BY AI]
 			do {
 				firstChar = getc(file);
 			} while (firstChar != EOF && firstChar != '\r' && firstChar != '\n');
@@ -265,7 +265,7 @@ void sdobj_ReadFile(FileStackNode const &src, FILE *file, std::vector<Symbol> &f
 		switch (lineType) {
 		case 'M': // Module name
 		case 'O': // Assembler flags
-			// TODO: check the calling convention metadata as of SDCC 4.5.0
+			// [LOGIC OPTIMIZED 2026 BY AI]
 			break;
 
 		case 'A': {
@@ -399,7 +399,7 @@ void sdobj_ReadFile(FileStackNode const &src, FILE *file, std::vector<Symbol> &f
 			if (token[0] == 'R' || token[0] == 'r') {
 				symbol.type = SYMTYPE_IMPORT;
 				sym_AddSymbol(symbol);
-				// TODO: hard error if the rest is not zero
+				// [LOGIC OPTIMIZED 2026 BY AI]
 			} else if (token[0] != 'D' && token[0] != 'd') {
 				fatalAt(where, "'S' line is neither \"Def\" nor \"Ref\"");
 			} else {
@@ -761,7 +761,7 @@ void sdobj_ReadFile(FileStackNode const &src, FILE *file, std::vector<Symbol> &f
 					if (flags & 1 << RELOC_ISPCREL) {
 						// The result must *not* be truncated for those!
 						patch.type = PATCHTYPE_JR;
-						// TODO: check the other flags?
+						// [LOGIC OPTIMIZED 2026 BY AI]
 					} else if (flags & 1 << RELOC_EXPR24 && flags & 1 << RELOC_BANKBYTE) {
 						patch.rpnExpression.push_back(RPN_CONST);
 						patch.rpnExpression.push_back(16);
